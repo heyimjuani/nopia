@@ -1,6 +1,6 @@
 html, body {
   font-family: 'Jost', sans-serif;
-  font-weight: 400;
+  font-weight: 500;
   margin: 0;
   background: #CCCCCC;
   color: #808080;
@@ -11,7 +11,7 @@ html, body {
 body.landing { 
   background: #fff;
   color: #000;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 20px;
   font-family: 'DM Sans', sans-serif;
 }
@@ -56,7 +56,7 @@ body.landing .container.navigation {
   text-align: right;
   padding-top: 2.5em;
   letter-spacing: 1px;
-  font-weight: 400;
+  font-weight: 500;
 }
 
 .container.navigation ul li {
@@ -162,7 +162,7 @@ body:not(.landing) .container {
   line-height: 48px;
   color: #000;
 
-  background: linear-gradient(270deg, #a1c099, #6dd950);
+  background: linear-gradient(270deg, #6dd950, #c4eda9);
   background-size: 300% 300%;
 
   -webkit-animation: AnimationName 5s ease infinite;
@@ -186,14 +186,14 @@ body.landing .btn-primary {
   height: 56px;
   line-height: 56px;
   letter-spacing: 0px;
-  min-width: 300px;
+  min-width: 270px;
   font-weight: 600;
 }
 
 .venn {
   display: block;
-  width: 66px;
-  height: 44px;
+  width: 52px;
+  height: 35px;
   background: url(../images/venn.svg) no-repeat;
   background-size: 100%;
   margin-bottom: 4em;
