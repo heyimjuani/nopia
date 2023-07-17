@@ -57,6 +57,7 @@ body.landing .container.navigation {
   padding-top: 2.5em;
   letter-spacing: 1px;
   font-weight: 500;
+  flex: 1;
 }
 
 .container.navigation ul li {
@@ -99,6 +100,9 @@ body:not(.landing) .wrap {
   width: 100%;
   margin-top: 0;
   margin-bottom: 0;
+}
+body.landing #page-title {
+  flex: 0;
 }
 
 body:not(.landing) .logo {
