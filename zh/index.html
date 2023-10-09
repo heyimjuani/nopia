@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="zh">
+
+<head>
+  <meta charset="utf-8">
+  <link rel="icon" href="/zh/favicon.ico" sizes="any">
+  <title>NOPIA</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/zh/styles.css">
+</head>
+
+<body>
+  <div class="content">
+    <h1>NOPIA</h1>
+    <h2>加电邮发送列表</h2>
+    <div class="header" src="/zh/header.jpg"></div>
+    <form class="form">
+      <input type="email" id="email" name="email" aria-label="Email" required autofocus>
+      <button type="submit">入敬请期待......</button>
+    </form>
+    <div id="success" class="message hidden">谢谢！</div>
+    <div id="error" class="message hidden">发生了错误。 请稍后再试！</div>
+    <p class="desc">一项正在进行的，关于将和声，<br>
+      音乐制作与演奏融为一体的研究</p>
+    <p class="year">2023</p>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    // const subscribeUrl = 'http://localhost:3000/subscribe';
+    const subscribeUrl = 'https://nopia-cn.flok.cc/subscribe';
+
+    const formEl = document.querySelector('form');
+    const successEl = document.getElementById("success");
+    const errorEl = document.getElementById("error");
+    const buttonEl = document.querySelector('button');
+
+    formEl.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      successEl.classList.add("hidden");
+      errorEl.classList.add("hidden");
+      buttonEl.setAttribute('disabled', true);
+
+      axios.post(subscribeUrl, {
+        email: formEl.email.value
+      }).then(function (response) {
+        formEl.email.value = "";
+        successEl.classList.remove("hidden");
+      }).catch(function (error) {
+        console.error("error", error);
+        errorEl.classList.remove("hidden");
+      });
+
+      buttonEl.removeAttribute('disabled');
+    });
+  </script>
+</body>
