@@ -58,7 +58,9 @@
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
-<div class="wrap">
+<div id="zh-banner" class="lang-banner hidden"><a href="zh/" class="click event-zhbanner">在中国浏览的朋友，请点击这里</a></div>
+
+<div class="wrap" id="lang-en">
   <div class="container navigation">
     <h1 id="page-title"><a href="#" class="logo">Nopia</a></h1>
     <ul class="navbar">
@@ -75,9 +77,84 @@
       2023</p>
     <span class="venn"></span>
     <p class="center"><a href="https://forms.gle/HPFy8nMMuv9asXXa9" target="_blank" class="btn-primary click event-goal">Get access</a></p>
+    <p id="zh-alt" class="center zh-alt hidden"><a href="zh/" target="_blank" class="btn-secondary click event-zhalt">如果上面的链接不起作用，请点击这里</a></p>
   </div>
   <div class="container footer"></div>
 </div>
 
+<div id="lang-zh" class="hidden">
+  <div id="en-banner" class="lang-banner"><a href="" id="backEn" onclick="showEn()" class="click event-zhbanner">English version here</a></div>
+  <div class="content">
+    <h2>NOPIA</h2>
+    <h3>加电邮发送列表</h3>
+    <div class="header"></div>
+    <form class="form">
+      <input type="email" id="email" name="email" aria-label="Email" required>
+      <button type="submit">入敬请期待......</button>
+    </form>
+    <div id="success" class="message hidden">谢谢！</div>
+    <div id="error" class="message hidden">发生了错误。 请稍后再试！</div>
+    <p class="desc">一项正在进行的，关于将和声，<br>
+      音乐制作与演奏融为一体的研究</p>
+    <p class="year">2023</p>
+  </div>
+</div>
+
+<script>
+  const userLanguage = window.navigator.language;
+  const userLanguages = window.navigator.languages;
+  var backEn = document.getElementById('backEn');
+  backEn.addEventListener('click', showEn);
+
+  function showEn(e) {
+    document.getElementById("lang-zh").classList.add("hidden");
+    document.getElementById("lang-en").classList.remove("hidden");
+    document.getElementById("zh-banner").classList.remove("hidden");
+    e.preventDefault();
+  }
+  var hiChina = userLanguages.some(function(element) {
+    return element.includes("zh");
+  });
+  if (hiChina) {
+    document.getElementById("zh-banner").classList.remove("hidden");
+    document.getElementById("zh-alt").classList.remove("hidden");
+  }
+
+  if (userLanguage.toLowerCase() === 'zh' || userLanguage.startsWith('zh-')) {
+    document.getElementById("lang-en").classList.add("hidden");
+    document.getElementById("lang-zh").classList.remove("hidden");
+    document.getElementById("zh-banner").classList.add("hidden");
+  }
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+  const subscribeUrl = 'https://nopia-cn.flok.cc/subscribe';
+
+  const formEl = document.querySelector('form');
+  const successEl = document.getElementById("success");
+  const errorEl = document.getElementById("error");
+  const buttonEl = document.querySelector('button');
+
+  formEl.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    successEl.classList.add("hidden");
+    errorEl.classList.add("hidden");
+    buttonEl.setAttribute('disabled', true);
+
+    axios.post(subscribeUrl, {
+      email: formEl.email.value
+    }).then(function (response) {
+      formEl.email.value = "";
+      successEl.classList.remove("hidden");
+    }).catch(function (error) {
+      console.error("error", error);
+      errorEl.classList.remove("hidden");
+    });
+
+    buttonEl.removeAttribute('disabled');
+  });
+</script>
 </body>
 </html>
